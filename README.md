@@ -22,7 +22,7 @@ jobs:
         uses: actions/checkout@v3
       - name: WebFeed
         id: web_feed
-        uses: ognis1205/instagram-web-feed-action@v1.0.0
+        uses: ognis1205/instagram-web-feed-action@v1.0.1
         with:
           username: ${{ secrets.INSTAGRAM_USERNAME }}
           password: ${{ secrets.INSTAGRAM_PASSWORD }}
@@ -31,7 +31,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-		  git add instagram.json
+          git add instagram.json
           git commit -am "Updated instagram.json"
           git push
 ```
