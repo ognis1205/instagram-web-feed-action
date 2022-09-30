@@ -98600,6 +98600,7 @@ const action = () => __awaiter(void 0, void 0, void 0, function* () {
         const pretty = Actions.getInput("pretty");
         const metadata = {
             title: title,
+            timestamp: `${Date.now()}`,
             description: `Instagram posts of ${username}.`,
         };
         const ig = new API.IgApiClient();

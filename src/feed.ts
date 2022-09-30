@@ -5,6 +5,7 @@
 export type Metadata = {
   title: string;
   description: string;
+  timestamp: string;
 };
 
 export type Item = {
@@ -23,5 +24,6 @@ export type Json = {
   version: string;
   title: string;
   description: string;
+  timestamp: string;
   items: Item[];
 };

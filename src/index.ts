@@ -27,6 +27,7 @@ const action = async (): Promise<void> => {
 
     const metadata = {
       title: title,
+      timestamp: `${Date.now()}`,
       description: `Instagram posts of ${username}.`,
     } as Feed.Metadata;
 
