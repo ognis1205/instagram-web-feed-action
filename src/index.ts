@@ -48,7 +48,7 @@ const action = async (): Promise<void> => {
     if (!items.length) return;
     const json = generate(items, metadata);
     await FS.writeFile(file, JSON.stringify(json, null, 2));
-    Actions.setOutput("RSS_STATUS", "success");
+    Actions.setOutput("STATUS", "success");
   } catch (e) {
     Handlers.onError(e);
   }

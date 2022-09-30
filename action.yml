@@ -1,0 +1,23 @@
+name: "Instagram Web Feed"
+author: "@ognis1205"
+description: "Generate a web feed from an Instagram account"
+runs:
+  using: node16
+  main: dist/index.js
+
+inputs:
+  file:
+    description: "The name of the JSON feed file name to be written."
+    default: "instagram.json"
+  username:
+    description: "Your Instagram username."
+    required: true
+  password:
+    description: "Your Instagram password."
+    required: true
+  title:
+    description: "The title of the web feed."
+    default: "Instagram"
+  pretty:
+    description: "Remove hashtags and emoji from captions."
+    default: true
