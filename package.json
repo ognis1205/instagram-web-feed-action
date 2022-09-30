@@ -1,6 +1,6 @@
 {
   "name": "instagram-web-feed-action",
-  "version": "0.1.0",
+  "version": "1.0.1",
   "description": "Instagram Web Feed Action",
   "main": "dist/index.js",
   "scripts": {
