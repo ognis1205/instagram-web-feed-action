@@ -16,6 +16,7 @@ export type Item = {
   contentSnippet: string;
   guid: string;
   isoDate: string;
+  imgSrc: string;
 };
 
 export type Json = {

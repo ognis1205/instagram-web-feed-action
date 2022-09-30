@@ -4,7 +4,7 @@
  */
 import EmojiRegex from "emoji-regex";
 
-export const emoji = (value: string): string | undefined => {
+export const emoji = (value: string | undefined): string | undefined => {
   if (!value) return;
   const regex = EmojiRegex();
   let ret = value;

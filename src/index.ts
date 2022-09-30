@@ -7,7 +7,7 @@ import * as FS from "fs/promises";
 import * as Feed from "./feed";
 import * as Handlers from "./handlers";
 import * as Format from "./format";
-import Instagram  from "instagram-web-api";
+import * as API from "instagram-private-api";
 
 const generate = (posts: Feed.Item[], metadata: Feed.Metadata): Feed.Json => {
   return {
@@ -21,29 +21,32 @@ const action = async (): Promise<void> => {
   try {
     const file = Actions.getInput("file");
     const username = Actions.getInput("username");
-    const targets = Actions.getInput("targets").split(",");
+    const password = Actions.getInput("password");
     const title = Actions.getInput("title");
     const pretty = Actions.getInput("pretty");
 
-    const client = new Instagram({ username });
     const metadata = {
       title: title,
-      description: `Instagram posts of ${targets.join(", ")}.`,
+      description: `Instagram posts of ${username}.`,
     } as Feed.Metadata;
 
-    let feeds: Feed.Item[] | [] = [];
-    for (const target of targets) {
+    const ig = new API.IgApiClient();
+    ig.state.generateDevice(username);
+    const user = await ig.account.login(username, password);
+    const feed = ig.feed.user(user.pk);
+    const page = await feed.items();
+
+    let items: Feed.Item[] | [] = [];
+    for (const post of page) {
       try {
-        const posts = await client.getPhotosByUsername({ username: target });
-        const formatted = Format.feed(posts, target, pretty === "true");
-        if (formatted) feeds = [...feeds, ...formatted];
+        items = [...items, Format.feed(post)];
       } catch (e) {
         Handlers.onWarning(e);
       }
     }
 
-    if (!feeds.length) return;
-    const json = generate(feeds, metadata);
+    if (!items.length) return;
+    const json = generate(items, metadata);
     await FS.writeFile(file, JSON.stringify(json, null, 2));
     Actions.setOutput("RSS_STATUS", "success");
   } catch (e) {
