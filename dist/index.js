@@ -98626,7 +98626,7 @@ const action = () => __awaiter(void 0, void 0, void 0, function* () {
         Handlers.onError(e);
     }
 });
-exports["default"] = action;
+exports["default"] = action();
 
 
 /***/ }),

@@ -54,4 +54,4 @@ const action = async (): Promise<void> => {
   }
 };
 
-export default action;
+export default action();
