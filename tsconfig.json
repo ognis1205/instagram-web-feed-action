@@ -16,12 +16,12 @@
     "node_modules",
   ],
   "typeRoots": [
-    "./src/types",
+    "./src/@types",
     "./node_modules/@types",
   ],
   "paths": {
     "*": [
-      "src/types/*",
+      "src/@types/*",
       "node_modules/*",
     ]
   },
