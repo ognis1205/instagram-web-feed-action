@@ -36,6 +36,7 @@ const action = async (): Promise<void> => {
     const user = await ig.account.login(username, password);
     const feed = ig.feed.user(user.pk);
     const page = await feed.items();
+    const resp = await ig.account.logout();
 
     let items: Feed.Item[] | [] = [];
     for (const post of page) {
